@@ -1,0 +1,8 @@
+# Socials
+
+For urgent issues or bug reports, contact support via email. For community help and updates, join our social channels.
+
+- Email: [support@playonvector.com](mailto:support@playonvector.com)
+- Telegram: [Join Telegram](https://t.me/playonvector123)
+- Discord: [Join Discord](https://discord.gg/VdcgKYEB)
+- X (Twitter): [Follow on X](https://x.com/playonvector)

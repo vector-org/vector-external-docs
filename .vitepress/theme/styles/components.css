@@ -1,0 +1,20 @@
+.VPSidebar .group .title {
+  color: var(--vp-c-text-2);
+}
+.VPSidebar .group.is-active .title {
+  color: var(--vp-c-text-1);
+}
+
+.VPSidebar .link.active, .VPSidebar .link:hover {
+  color: var(--vp-c-brand-1);
+}
+
+.DocSearch-Button {
+  background: var(--vp-c-surface-2) !important;
+  border: 1px solid var(--vp-c-divider) !important;
+}
+
+.VPFooter {
+  background: var(--vp-c-surface-1) !important;
+  border-top: 1px solid var(--vp-c-divider);
+}

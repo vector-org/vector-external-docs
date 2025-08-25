@@ -1,0 +1,27 @@
+
+# Vector Platform Documentation
+
+Vector is a platform for secure, modern game publishing and distribution. Get started below.
+
+## Gamers
+
+Install the Vector client and start playing.
+
+- [Installing Vector Client](/installing-vector-client)
+- [Gamer FAQ](/faq/gamer)
+
+## Game Developers
+
+Build, integrate, and list your games for the Vector ecosystem.
+
+- [Engine Setup](/integration/engine-setup)
+- [Unity Plugin Integration](/integration/unity-plugin)
+- [Unreal Plugin Integration](/integration/unreal-plugin)
+- [Listing Requirements](/listing/requirements)
+- [Listing Process](/listing/process)
+- [Game and Plugin Lifecycle](/listing/lifecycle)
+- [Developer FAQ](/faq/developer)
+
+## Support
+
+- [Support & Socials](/support/)
