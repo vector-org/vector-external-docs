@@ -17,7 +17,7 @@ export const metadata = {
   icons: '/img/favicon.svg',
 } satisfies Metadata
 
-const repo = 'https://github.com/vector-org/vector-external-docs'
+const repo = 'https://github.com/vector-org/'
 
 const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
   const { t } = await useServerLocale(lang)
@@ -104,7 +104,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
               </LastUpdated>
             )}
             editLink={null}
-            docsRepositoryBase="https://github.com/vector-org/vector-external-docs"
+            docsRepositoryBase="https://github.com/vector-org"
             search={<Search />}
             i18n={[]}
             toc={{
