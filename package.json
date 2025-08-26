@@ -16,7 +16,7 @@
     "devlop": "^1.1.0",
     "entities": "^4.5.0",
     "esbuild": "^0.25.9",
-    "estree-walker": "^2.0.2",
+    "estree-walker": "^3.0.3",
     "fdir": "^6.5.0",
     "focus-trap": "^7.6.5",
     "hast-util-to-html": "^9.0.5",
