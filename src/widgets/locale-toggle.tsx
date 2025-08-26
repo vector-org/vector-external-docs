@@ -1,7 +1,6 @@
 'use client'
 
 import clsx from 'clsx'
-import { addBasePath } from 'next/dist/client/add-base-path'
 import { usePathname, useRouter } from 'next/navigation'
 import { useCallback, useEffect } from 'react'
 import { Toggle } from '@/components/ui/toggle'
