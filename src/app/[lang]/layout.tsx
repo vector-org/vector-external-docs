@@ -16,11 +16,11 @@ import './styles/index.css'
 export const metadata = {
   // Define your metadata here
   // For more information on metadata API, see: https://nextjs.org/docs/app/building-your-application/optimizing/metadata
-  metadataBase: new URL('https://nextjs-nextra-starter-green.vercel.app'),
+  metadataBase: new URL('https://docs.playonvector.com/en/docs'),
   icons: '/img/favicon.svg',
 } satisfies Metadata
 
-const repo = 'https://github.com/pdsuwwz/nextjs-nextra-starter'
+const repo = 'https://github.com/vector-org/vector-external-docs'
 
 const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
   const { t } = await useServerLocale(lang)
@@ -83,8 +83,8 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
   await getDictionary(lang)
   const pageMap = await getPageMap(lang)
 
-  const title = 'Vector Docs'
-  const description = 'Vector Documentation'
+  const title = 'VECTOR | Documentation'
+  const description = 'Documentation for the VECTOR platform'
 
   const { t } = await useServerLocale(lang)
 
