@@ -1,11 +1,8 @@
 import type { Metadata } from 'next'
 import type { I18nLangAsyncProps, I18nLangKeys } from '@/i18n'
-import { GoogleAnalytics } from '@next/third-parties/google'
-import Script from 'next/script'
-import { Footer, LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
+import { LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
-import { CustomFooter } from '@/components/CustomFooter'
 import { useServerLocale } from '@/hooks'
 import ThemeToggle from '@/widgets/theme-toggle'
 
@@ -50,25 +47,6 @@ const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
     </Navbar>
   )
 }
-
-const BaiduTrack = () => {
-  return (
-    <>
-      <Script strategy="afterInteractive">
-        {`
-          var _hmt = _hmt || [];
-          (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?d5ad5e04e6af914c01767926567602be";
-            var s = document.getElementsByTagName("script")[0]; 
-            s.parentNode.insertBefore(hm, s);
-          })();
-        `}
-      </Script>
-    </>
-  )
-}
-
 
 // interface Props {
 //   children: ReactNode
@@ -126,12 +104,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
               </LastUpdated>
             )}
             editLink={null}
-            docsRepositoryBase="https://github.com/pdsuwwz/nextjs-nextra-starter"
-            footer={(
-              <Footer className="bg-background py-5!">
-                <CustomFooter />
-              </Footer>
-            )}
+            docsRepositoryBase="https://github.com/vector-org/vector-external-docs"
             search={<Search />}
             i18n={[]}
             toc={{
@@ -146,8 +119,6 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
           </Layout>
         </ThemeProvider>
       </body>
-      {/* <GoogleAnalytics gaId="G-VCR6017LB8" /> */}
-      {/* <BaiduTrack /> */}
     </html>
   )
 }
