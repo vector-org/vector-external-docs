@@ -23,7 +23,7 @@
     "hast-util-whitespace": "^3.0.0",
     "hookable": "^5.5.3",
     "html-void-elements": "^3.0.0",
-    "is-what": "^4.1.16",
+    "is-what": "^5.2.1",
     "magic-string": "^0.30.18",
     "mark.js": "^8.11.1",
     "mdast-util-to-hast": "^13.2.0",
