@@ -27,19 +27,7 @@ const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
   return (
     <Banner
       storageKey="starter-banner"
-    >
-      <div className="flex justify-center items-center gap-1">
-        { t('banner.title') }
-        {' '}
-        <a
-          className="max-sm:hidden text-warning hover:underline"
-          target="_blank"
-          href={repo}
-        >
-          { t('banner.more') }
-        </a>
-      </div>
-    </Banner>
+    />
   )
 }
 
