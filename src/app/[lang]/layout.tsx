@@ -83,8 +83,8 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
   await getDictionary(lang)
   const pageMap = await getPageMap(lang)
 
-  const title = 'My Nextra Starter'
-  const description = 'A Starter template with Next.js, Nextra'
+  const title = 'Vector Docs'
+  const description = 'Vector Documentation'
 
   const { t } = await useServerLocale(lang)
 
@@ -146,7 +146,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
           </Layout>
         </ThemeProvider>
       </body>
-      <GoogleAnalytics gaId="G-VCR6017LB8" />
+      {/* <GoogleAnalytics gaId="G-VCR6017LB8" /> */}
       <BaiduTrack />
     </html>
   )
