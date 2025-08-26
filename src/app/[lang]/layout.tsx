@@ -147,7 +147,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
         </ThemeProvider>
       </body>
       {/* <GoogleAnalytics gaId="G-VCR6017LB8" /> */}
-      <BaiduTrack />
+      {/* <BaiduTrack /> */}
     </html>
   )
 }
