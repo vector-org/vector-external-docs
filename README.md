@@ -4,7 +4,7 @@
   <img alt="color mode" src="https://i.stardots.io/wisdom/1745917153483.png" width="100%" align="center" style="margin-bottom:20px;">
 </picture></a><br /><br /></p>
 
-# Nextjs Nextra Starter
+# Nextjs Nextra Starter 
 
 中文 | [English](README-en.md)
 
