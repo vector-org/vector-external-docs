@@ -18,11 +18,6 @@ Nextra supports multilingual content through folder structure. In the project ro
         <FileTree.File name="index.mdx" />
         <FileTree.File name="introduction.mdx" />
       </FileTree.Folder>
-      <FileTree.Folder name="zh" defaultOpen>
-        <FileTree.File name="_meta.tsx" active />
-        <FileTree.File name="index.mdx" />
-        <FileTree.File name="introduction.mdx" />
-      </FileTree.Folder>
     </FileTree.Folder>
   </FileTree.Folder>
 </FileTree>
@@ -63,7 +58,6 @@ For components and client-side content, we've implemented a type-safe internatio
     <FileTree.Folder name="i18n" defaultOpen>
       <FileTree.File name="index.ts" comment="Core functionality and type definitions" />
       <FileTree.File name="en.ts" comment="English JSON language pack" />
-      <FileTree.File name="zh.ts" comment="Chinese JSON language pack" />
     </FileTree.Folder>
     <FileTree.Folder name="hooks" defaultOpen>
       <FileTree.File name="useLocale.ts" comment="Pre-packaged common hooks" />
@@ -119,7 +113,7 @@ function MyComponent() {
 
 #### 2. Dynamic Language Switching
 
-Switch languages via URL paths (e.g., [`/en/introduction`](/en/introduction) and [`/zh/introduction`](/zh/introduction)). The current language is automatically obtained from the URL parameter.
+This starter is currently configured for English only; multilingual routing has been removed.
 
 ## Type Safety
 

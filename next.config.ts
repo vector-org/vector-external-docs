@@ -18,9 +18,10 @@ export default withNextra({
   },
   reactStrictMode: true,
   cleanDistDir: true,
+  // Single-language site (English only)
   i18n: {
-    locales: ['zh', 'en'],
-    defaultLocale: 'zh',
+    locales: ['en'],
+    defaultLocale: 'en',
   },
   sassOptions: {
     silenceDeprecations: ['legacy-js-api'],

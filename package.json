@@ -79,5 +79,11 @@
     "sass": "^1.90.0",
     "tailwindcss": "^4.1.12",
     "typescript": "^5.9.2"
-  }
+  },
+  "trustedDependencies": [
+    "@parcel/watcher",
+    "@tailwindcss/oxide",
+    "@tsparticles/engine",
+    "unrs-resolver"
+  ]
 }

@@ -1,8 +1,4 @@
 import type { Metadata } from 'next'
-
-
-import type { ReactNode } from 'react'
-
 import type { I18nLangAsyncProps, I18nLangKeys } from '@/i18n'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import Script from 'next/script'
@@ -11,7 +7,6 @@ import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { CustomFooter } from '@/components/CustomFooter'
 import { useServerLocale } from '@/hooks'
-import LocaleToggle from '@/widgets/locale-toggle'
 import ThemeToggle from '@/widgets/theme-toggle'
 
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
@@ -60,7 +55,7 @@ const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
       projectLink={repo}
     >
       <>
-        <LocaleToggle className="max-md:hidden" />
+        {/* LocaleToggle removed (single language) */}
         <ThemeToggle className="max-md:hidden" />
       </>
 
@@ -97,7 +92,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
 
   const { lang } = getterParams as { lang: I18nLangKeys }
 
-  const dictionary = await getDictionary(lang)
+  await getDictionary(lang)
   const pageMap = await getPageMap(lang)
 
   const title = 'My Nextra Starter'
@@ -115,9 +110,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
       dir={getDirection(lang)}
       suppressHydrationWarning
     >
-      <Head
-      // ... Your additional head options
-      >
+      <Head>
         {/* <title>{asPath !== '/' ? `${normalizePagesResult.title} - ${title}` : title}</title> */}
         <meta property="og:title" content={title} />
         <meta name="description" content={description} />
@@ -152,10 +145,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
               </Footer>
             )}
             search={<Search />}
-            i18n={[
-              { locale: 'en', name: 'English' },
-              { locale: 'zh', name: '简体中文' },
-            ]}
+            i18n={[]}
             toc={{
               backToTop: t('backToTop'),
               title: t('pageTitle'),
