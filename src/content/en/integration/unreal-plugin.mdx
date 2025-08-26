@@ -1,0 +1,240 @@
+---
+title: "Unreal Plugin Integration"
+description: "Integrate the Vector DRM system with Unreal Engine projects."
+---
+
+
+# Unreal Plugin Integration
+
+This guide explains how to integrate the Vector DRM system with your Unreal Engine project using the VectorSDK.
+
+> **Note:** The `drm-token.json` file required for DRM validation is generated automatically by installing and running the `vector-client` application. You do not need to create or edit this file manually. Ensure the client is installed and started on the user's machine before launching the game.
+
+---
+
+## Integration Steps
+
+### 1. Add the VectorSDK Plugin
+- Download the latest VectorSDK binaries from [VectorSDK Releases](https://github.com/vector-org/vector-sdk/releases/tag/v0.0.3).
+- Place the appropriate binary for your platform in your Unreal project's `Plugins/VectorSDK/Binaries/<Platform>/` directory.
+
+### 2. Add the ScalarAPI.cpp Implementation
+- Copy the following code into a new file named `ScalarAPI.cpp` inside your plugin's `Private/` folder:
+
+```cpp
+// Copyright Vector. All Rights Reserved.
+
+#include "VectorSDK.h"
+#include "HAL/PlatformProcess.h"
+#include "Interfaces/IPluginManager.h"
+#include "Misc/ConfigCacheIni.h"
+#include "Misc/MessageDialog.h"
+#include "Misc/Paths.h"
+
+#if PLATFORM_MAC
+#include <pwd.h>
+#include <unistd.h>
+#endif
+
+DEFINE_LOG_CATEGORY_STATIC(LogVectorSDK, Log, All);
+
+using LoadAndValidateDRMTokenFn = const char *(*)(const char *, const char *);
+using GetVectorSDKVersionFn = const char *(*)();
+using FreeStringFn = void (*)(char *);
+
+FString GetPlatformName() {
+#if PLATFORM_WINDOWS
+	return TEXT("Win64");
+#elif PLATFORM_MAC
+	return TEXT("Mac");
+#elif PLATFORM_LINUX
+	return TEXT("Linux");
+#else
+	return TEXT("");
+#endif
+}
+
+FString GetLibraryFileName() {
+#if PLATFORM_WINDOWS
+	return TEXT("vector_sdk.dll");
+#elif PLATFORM_MAC
+	return TEXT("libvector_sdk.dylib");
+#elif PLATFORM_LINUX
+	return TEXT("libvector_sdk.so");
+#else
+	return TEXT("");
+#endif
+}
+
+FString GetTokenPath() {
+#if PLATFORM_WINDOWS
+	FString AppData = FPlatformMisc::GetEnvironmentVariable(TEXT("APPDATA"));
+	return FPaths::Combine(AppData, TEXT("com.vector.client"),
+												 TEXT("drm-token.json"));
+#elif PLATFORM_MAC
+	struct passwd *pw = getpwuid(getuid());
+	if (pw && pw->pw_dir) {
+		FString RealHome = UTF8_TO_TCHAR(pw->pw_dir);
+		return FPaths::Combine(
+				RealHome,
+				TEXT("Library/Application Support/com.vector.client/drm-token.json"));
+	}
+	return TEXT("");
+#elif PLATFORM_LINUX
+	const char *XdgConfigHome = std::getenv("XDG_CONFIG_HOME");
+	FString Base =
+			XdgConfigHome
+					? UTF8_TO_TCHAR(XdgConfigHome)
+					: FPaths::Combine(FPlatformMisc::GetEnvironmentVariable(TEXT("HOME")),
+														TEXT(".config"));
+	return FPaths::Combine(Base, TEXT("com.vector.client/drm-token.json"));
+#else
+	return TEXT("");
+#endif
+}
+
+FString GetGameUUID() {
+	FString UUID = "<YOUR-GAME-UUID-HERE>"; // TODO: Set your actual Game UUID here
+	return UUID;
+}
+
+bool ShowErrorAndExit(const FString &Message) {
+	FMessageDialog::Open(EAppMsgType::Ok, FText::FromString(Message));
+	FGenericPlatformMisc::RequestExit(true);
+	return false;
+}
+
+bool IsVersionCompatible(const FString &Native, const FString &Plugin) {
+	TArray<FString> NativeParts, PluginParts;
+	Native.ParseIntoArray(NativeParts, TEXT("."));
+	Plugin.ParseIntoArray(PluginParts, TEXT("."));
+
+	for (int i = 0; i < FMath::Min(NativeParts.Num(), PluginParts.Num()); i++) {
+		int32 NativeInt = FCString::Atoi(*NativeParts[i]);
+		int32 PluginInt = FCString::Atoi(*PluginParts[i]);
+		if (NativeInt < PluginInt)
+			return false;
+		if (NativeInt > PluginInt)
+			return true;
+	}
+	return true;
+}
+
+bool ValidateToken(const FString &LibPath, const FString &TokenPath,
+									 const FString &GameUUID) {
+	void *Handle = FPlatformProcess::GetDllHandle(*LibPath);
+	if (!Handle)
+		return ShowErrorAndExit(FString::Printf(
+				TEXT("❌ Failed to load VectorSDK library:\n%s"), *LibPath));
+
+	auto LoadAndValidate =
+			(LoadAndValidateDRMTokenFn)FPlatformProcess::GetDllExport(
+					Handle, TEXT("load_and_validate_drm_token"));
+	auto GetVersion = (GetVectorSDKVersionFn)FPlatformProcess::GetDllExport(
+			Handle, TEXT("get_vector_sdk_version"));
+	auto FreeString =
+			(FreeStringFn)FPlatformProcess::GetDllExport(Handle, TEXT("free_string"));
+
+	if (!LoadAndValidate || !FreeString || !GetVersion) {
+		return ShowErrorAndExit(
+				TEXT("❌ VectorSDK native library is missing required exports."));
+	}
+
+	std::string TokenStr = TCHAR_TO_UTF8(*TokenPath);
+	std::string UUIDStr = TCHAR_TO_UTF8(*GameUUID);
+
+	const char *VersionResult = GetVersion();
+	FString NativeVersion = UTF8_TO_TCHAR(VersionResult);
+	FreeString(const_cast<char *>(VersionResult));
+
+	const FString PluginVersion = TEXT("0.1.0");
+	if (!IsVersionCompatible(NativeVersion, PluginVersion)) {
+		return ShowErrorAndExit(FString::Printf(
+				TEXT("❌ Incompatible VectorSDK version:\nLibrary: %s\nRequired: %s"),
+				*NativeVersion, *PluginVersion));
+	}
+
+	const char *Result = LoadAndValidate(TokenStr.c_str(), UUIDStr.c_str());
+	FString ResultStr = UTF8_TO_TCHAR(Result);
+	FreeString(const_cast<char *>(Result));
+
+	if (ResultStr.Contains(TEXT("error"), ESearchCase::IgnoreCase) ||
+			ResultStr.Contains(TEXT("invalid"), ESearchCase::IgnoreCase) ||
+			ResultStr.Contains(TEXT("failed"), ESearchCase::IgnoreCase) ||
+			ResultStr.Contains(TEXT("expired"), ESearchCase::IgnoreCase)) {
+		return ShowErrorAndExit(
+				FString::Printf(TEXT("❌ Token validation failed:\n%s"), *ResultStr));
+	}
+
+	return true;
+}
+
+void StartupVectorSDK() {
+	FString Platform = GetPlatformName();
+	if (Platform.IsEmpty()) {
+		ShowErrorAndExit(TEXT("❌ Unsupported platform."));
+		return;
+	}
+
+	FString PluginBase =
+			IPluginManager::Get().FindPlugin(TEXT("VectorSDK"))->GetBaseDir();
+	FString LibPath = FPaths::Combine(PluginBase, TEXT("Binaries"), Platform,
+																		GetLibraryFileName());
+	FString TokenPath = GetTokenPath();
+	UE_LOG(LogVectorSDK, Log, TEXT("Using token path: %s"), *TokenPath);
+	FString UUID = GetGameUUID();
+
+	if (UUID.IsEmpty()) {
+		ShowErrorAndExit(TEXT("❌ Game UUID not configured. Please set "
+													"VectorSDKGameUUID in DefaultGame.ini."));
+		return;
+	}
+
+	if (!FPaths::FileExists(TokenPath)) {
+		ShowErrorAndExit(
+				FString::Printf(TEXT("❌ DRM token not found:\n%s"), *TokenPath));
+		return;
+	}
+
+	if (!ValidateToken(LibPath, TokenPath, UUID)) {
+		return;
+	}
+
+	UE_LOG(LogVectorSDK, Log, TEXT("✅ DRM token validation successful."));
+}
+
+void FVectorSDKModule::StartupModule() { StartupVectorSDK(); }
+
+void FVectorSDKModule::ShutdownModule() {
+	UE_LOG(LogVectorSDK, Log, TEXT("VectorSDK Shutdown."));
+}
+
+IMPLEMENT_MODULE(FVectorSDKModule, VectorSDK)
+```
+
+**Important:**
+- Replace `<YOUR-GAME-UUID-HERE>` in `GetGameUUID()` with your actual Game UUID.
+- This code must be included in your plugin's `Private/` folder for proper DRM validation.
+
+### 3. Build and Test
+- Build your Unreal project.
+- On startup, the plugin will validate the DRM token and Game UUID.
+- If validation fails, the game will exit with an error dialog.
+
+---
+
+## DRM Token Location
+
+| Platform | Token Path |
+|----------|------------|
+| Windows  | `%APPDATA%\com.vector.client\drm-token.json` |
+| macOS    | `~/Library/Application Support/com.vector.client/drm-token.json` |
+| Linux    | `~/.config/com.vector.client/drm-token.json` |
+
+---
+
+## Support & License
+
+- For help: [security@playonvector.com](mailto:security@playonvector.com)
+- Games built with this plugin are for the [VECTOR platform](https://playonvector.com) only.
+- See the LICENSE file for full details.
