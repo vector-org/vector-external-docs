@@ -39,9 +39,9 @@ const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
         <Image
     src="/img/Vector-logo.svg"
     alt="VECTOR Logo"
-    height={32}
-    width={32}
-    style={{ height: 32 }}
+    height={54}
+    width={100}
+    style={{ height: 54 }}
   />
       )}
       logoLink={`/${lang}`}
