@@ -9,6 +9,8 @@ import ThemeToggle from '@/widgets/theme-toggle'
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
 import { ThemeProvider } from './_components/ThemeProvider'
 import './styles/index.css'
+import Image from "next/image";
+
 
 export const metadata = {
   // Define your metadata here
