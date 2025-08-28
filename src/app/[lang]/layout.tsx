@@ -29,7 +29,7 @@ const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
     />
   )
 }
-
+ 
 
 const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
   const { t } = await useServerLocale(lang)
