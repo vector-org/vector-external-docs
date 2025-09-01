@@ -1,4 +1,4 @@
-# README
+# README 
 
 ## Table of Contents
 
@@ -18,4 +18,4 @@ This section outlines the layout of the external VECTOR documentation for gamers
     - Unreal
     - Unity
     - Custom
-  - FAQ 
+  - FAQ
