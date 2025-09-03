@@ -215,7 +215,7 @@ void StartupVectorSDK() {
 }
 
 void FVectorSDKModule::StartupModule() {
-  if (!IsRunningCommandlet()) {
+  if (!IsRunningCommandlet() && !GIsEditor) {
     StartupVectorSDK();
   }
 }
