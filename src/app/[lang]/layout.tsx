@@ -1,15 +1,15 @@
 import type { Metadata } from 'next'
 import type { I18nLangAsyncProps, I18nLangKeys } from '@/i18n'
+import Image from 'next/image'
 import { LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { useServerLocale } from '@/hooks'
-import ThemeToggle from '@/widgets/theme-toggle'
 
+import ThemeToggle from '@/widgets/theme-toggle'
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
 import { ThemeProvider } from './_components/ThemeProvider'
 import './styles/index.css'
-import Image from "next/image";
 
 
 export const metadata = {
@@ -29,7 +29,7 @@ const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
     />
   )
 }
- 
+
 
 const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
   const { t } = await useServerLocale(lang)
@@ -37,12 +37,12 @@ const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
     <Navbar
       logo={(
         <Image
-    src="/img/Vector-logo.svg"
-    alt="VECTOR Logo"
-    height={54}
-    width={100}
-    style={{ height: 54 }}
-  />
+          src="/img/Vector-logo.svg"
+          alt="VECTOR Logo"
+          height={54}
+          width={100}
+          style={{ height: 54 }}
+        />
       )}
       logoLink={`/${lang}`}
       projectLink={repo}
