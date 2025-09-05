@@ -273,3 +273,20 @@ article {
 .text-vector-teal {
   color: #9CD3B8;
 }
+
+a {
+  color: #000000;
+}
+
+a:hover {
+  color: #333333;
+}
+
+.nextra-sidebar .nextra-sidebar-menu [aria-selected="true"] {
+  color: #000000 !important;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nextra-toc .nextra-toc-content a[data-active="true"] {
+  color: #000000 !important;
+}
