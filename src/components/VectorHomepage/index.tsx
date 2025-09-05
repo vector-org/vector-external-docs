@@ -23,7 +23,7 @@ export function VectorHomepage() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <div className="bg-grey-100 rounded-3xl p-8 border border-grey-200">
+          <div className="rounded-3xl p-8 bg-gray-50">
             <h2 className="text-3xl font-bold text-vector-teal mb-6">GAMERS</h2>
             <div className="space-y-4">
               <p className="text-grey-900 font-medium mb-6">
@@ -50,7 +50,7 @@ export function VectorHomepage() {
             </div>
           </div>
 
-          <div className="bg-grey-100 rounded-3xl p-8 border border-grey-200">
+          <div className="rounded-3xl p-8 bg-gray-50">
             <h2 className="text-3xl font-bold text-vector-teal mb-6">DEVELOPERS</h2>
             <div className="space-y-4">
               <p className="text-grey-900 font-medium mb-6">
