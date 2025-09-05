@@ -160,7 +160,7 @@
 */
 :root {
   --warning: hsl(38.21 94.06% 60.39%);
-  --background: hsl(0 0% 100%);
+  --background: hsl(252, 5%, 79%);
   --foreground: hsl(0 0% 3.9%);
   --card: hsl(0 0% 100%);
   --card-foreground: hsl(0 0% 3.9%);
@@ -232,4 +232,44 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+}
+
+.nextra-sidebar {
+  background: white;
+  margin: 24px;
+  margin-right: 0;
+  border-radius: 14px;
+}
+
+article {
+  background: white;
+  margin: 24px;
+  margin-left: 24px;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.nextra-navbar-blur,
+.nextra-sidebar-footer {
+  background: white !important;
+}
+
+.nextra-sidebar-footer button[title="Change theme"] {
+  display: none !important;
+}
+
+.nextra-toc:not(:has(ul.nextra-scrollbar)) {
+  display: none;
+}
+
+.nextra-toc {
+  background: white;
+  margin: 24px;
+  margin-left: 0;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
+.text-vector-teal {
+  color: #9CD3B8;
 }
