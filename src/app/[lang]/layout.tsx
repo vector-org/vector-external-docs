@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import type { I18nLangAsyncProps, I18nLangKeys } from '@/i18n'
-import Image from 'next/image'
+import { Analytics } from '@vercel/analytics/react'
 import { LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
@@ -121,6 +121,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
             {children}
           </Layout>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   )
