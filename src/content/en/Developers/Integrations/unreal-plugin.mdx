@@ -29,8 +29,8 @@ This guide explains how to integrate the Vector DRM system with your Unreal Engi
 | Windows (32-bit) | Win32       |
 | macOS(Intel or Apple Silicon)            | Mac         |
 
-### 3. Add the ScalarAPI.cpp Implementation
-- Copy the following code into a new file named `ScalarAPI.cpp` inside your plugin's `Private/` folder:
+### 3. Add the VectorSDK.cpp Implementation
+- Copy the following code into a new file named `VectorSDK.cpp` inside your plugin's `Private/` folder:
 
 ```cpp
 // Copyright Vector. All Rights Reserved.
@@ -215,7 +215,7 @@ void StartupVectorSDK() {
 }
 
 void FVectorSDKModule::StartupModule() {
-  if (!IsRunningCommandlet()) {
+  if (!IsRunningCommandlet() && !GIsEditor) {
     StartupVectorSDK();
   }
 }
