@@ -4,9 +4,9 @@ import Image from 'next/image'
 import { LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
+import { CustomFooter } from '@/components/CustomFooter'
 import { useServerLocale } from '@/hooks'
 
-import ThemeToggle from '@/widgets/theme-toggle'
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
 import { ThemeProvider } from './_components/ThemeProvider'
 import './styles/index.css'
@@ -35,21 +35,13 @@ const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
   const { t } = await useServerLocale(lang)
   return (
     <Navbar
-      logo={(
-        <Image
-          src="/img/Vector-logo.svg"
-          alt="VECTOR Logo"
-          height={54}
-          width={100}
-          style={{ height: 54 }}
-        />
-      )}
       logoLink={`/${lang}`}
       projectLink={repo}
+      logo={undefined}
     >
       <>
         {/* LocaleToggle removed (single language) */}
-        <ThemeToggle className="max-md:hidden" />
+        {/* ThemeToggle removed (light mode only) */}
       </>
 
     </Navbar>
@@ -94,8 +86,8 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           storageKey="starter-theme-provider"
           disableTransitionOnChange
         >
@@ -113,15 +105,18 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
             )}
             editLink={null}
             docsRepositoryBase="https://github.com/vector-org"
+            footer={(
+              <CustomFooter />
+            )}
             search={<Search />}
             i18n={[]}
             toc={{
               backToTop: t('backToTop'),
               title: t('pageTitle'),
             }}
+            themeSwitch={{}}
             pageMap={pageMap}
             feedback={{ content: '' }}
-          // ... Your additional layout options
           >
             {children}
           </Layout>
