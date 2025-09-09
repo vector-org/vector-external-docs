@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import type { I18nLangAsyncProps, I18nLangKeys } from '@/i18n'
-import Image from 'next/image'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { CustomFooter } from '@/components/CustomFooter'
-import { useServerLocale } from '@/hooks'
 
+import { useServerLocale } from '@/hooks'
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
 import { ThemeProvider } from './_components/ThemeProvider'
 import './styles/index.css'
@@ -121,6 +122,8 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
             {children}
           </Layout>
         </ThemeProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   )
