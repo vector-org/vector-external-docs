@@ -231,7 +231,43 @@ IMPLEMENT_MODULE(FVectorSDKModule, VectorSDK)
 - Replace `<YOUR-GAME-UUID-HERE>` in `GetGameUUID()` with your actual Game UUID.
 - This code must be included in your plugin's `Private/` folder for proper DRM validation.
 
-### 4. Build and Test
+### 4. Add the VectorSDK.Build.cs File
+- Replace the file named `VectorSDK.Build.cs` in your plugin's `Source/VectorSDK/` folder (path: `Plugins/VectorSDK/Source/VectorSDK/VectorSDK.Build.cs`).
+- With the following code:
+
+```csharp
+using UnrealBuildTool;
+using System.IO;
+
+public class VectorSDK : ModuleRules
+{
+ public VectorSDK(ReadOnlyTargetRules Target) : base(Target)
+ {
+    PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+
+    PublicDependencyModuleNames.AddRange(new string[] {
+      "Core", "CoreUObject", "Engine", "Projects"
+    });
+
+    string BinaryPath = Path.Combine("$(PluginDir)", "Binaries", Target.Platform.ToString());
+
+    if (Target.Platform == UnrealTargetPlatform.Win64)
+    {
+      RuntimeDependencies.Add(Path.Combine(BinaryPath, "vector_sdk.dll"));
+    }
+    else if (Target.Platform == UnrealTargetPlatform.Mac)
+    {
+      RuntimeDependencies.Add(Path.Combine(BinaryPath, "libvector_sdk.dylib"));
+    }
+    else if (Target.Platform == UnrealTargetPlatform.Linux)
+    {
+      RuntimeDependencies.Add(Path.Combine(BinaryPath, "libvector_sdk.so"));
+    }
+  }
+}
+```
+
+### 5. Build and Test
 > **Note:** You will need the `drm-token.json` file for testing the launch of the game in Editor or directly
 
 > The `drm-token.json` file is only required at runtime on the user's machine or for testing/debugging the drm validation
