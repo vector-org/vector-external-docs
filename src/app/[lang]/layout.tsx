@@ -6,8 +6,9 @@ import { LastUpdated, Layout, Navbar } from 'nextra-theme-docs'
 import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { CustomFooter } from '@/components/CustomFooter'
-
 import { useServerLocale } from '@/hooks'
+
+import ThemeToggle from '@/widgets/theme-toggle'
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
 import { ThemeProvider } from './_components/ThemeProvider'
 import './styles/index.css'
@@ -42,7 +43,7 @@ const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
     >
       <>
         {/* LocaleToggle removed (single language) */}
-        {/* ThemeToggle removed (light mode only) */}
+        <ThemeToggle />
       </>
 
     </Navbar>
@@ -87,9 +88,9 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
       <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          storageKey="starter-theme-provider"
+          defaultTheme="system"
+          enableSystem={true}
+          storageKey="vector-docs-theme"
           disableTransitionOnChange
         >
           <Layout
