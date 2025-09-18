@@ -266,3 +266,7 @@ a:hover {
 .dark .nextra-sidebar .x\\:dark\\:before\\:bg-neutral-800::before {
   background-color: rgb(var(--border)) !important;
 }
+
+div.w-full.bg-background-alt.border-t.border-border.mt-auto {
+  background-color: rgb(var(--background-alt)) !important;
+}
