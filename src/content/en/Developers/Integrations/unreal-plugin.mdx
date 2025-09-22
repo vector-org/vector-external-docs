@@ -483,7 +483,7 @@ public class VectorSDK : ModuleRules
 > **Note:** You will need the `drm-token.json` file for testing the launch of the game in Editor or directly
 
 > The `drm-token.json` file is only required at runtime on the user's machine or for testing/debugging the drm validation
-> To pass the DRM validation step, the user (or developer) must hold the required NFT in their wallet/account. The build/test process will validate the presence of the NFT via the `drm-token.json` file. If you encounter issues with the plugin loading or DRM validation, check the logs for error messages. If you see a DRM token error, ensure your `drm-token.json` is present, valid, and that the NFT is held by the account.
+> To pass the DRM validation step, the user (or developer) must hold the required license in their wallet/account. The build/test process will validate the presence of the license via the `drm-token.json` file. If you encounter issues with the plugin loading or DRM validation, check the logs for error messages. If you see a DRM token error, ensure your `drm-token.json` is present, valid, and that the license is held by the account.
 
 - Build your Unreal project.
 - On startup, the plugin will validate the DRM token and Game UUID.
