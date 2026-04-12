@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks-extra/no-unnecessary-use-prefix */
 import type { AllLocales, I18nLangKeys, LocaleKeys, PathValue } from '@/i18n'
 import { getNestedValue, i18nConfig, interpolateString } from '@/i18n'
 
@@ -7,13 +6,7 @@ type LocalizedValue<T, K extends LocaleKeys> = PathValue<T, K> extends string
   ? string
   : PathValue<T, K>
 
-interface ServerLocaleParams {
-  params: {
-    lang?: string
-  }
-}
-
-export async function useServerLocale(lang: I18nLangKeys) {
+export async function getServerLocale(lang: I18nLangKeys) {
   // 从参数中获取当前语言
   const currentLocale = lang
 

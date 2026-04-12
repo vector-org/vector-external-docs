@@ -7,9 +7,8 @@ import { Banner, Head, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import { CustomFooter } from '@/components/CustomFooter'
 
-import { useServerLocale } from '@/hooks'
+import { getServerLocale } from '@/hooks'
 import { getDictionary, getDirection } from '../_dictionaries/get-dictionary'
-import { ThemeProvider } from './_components/ThemeProvider'
 import './styles/index.css'
 
 
@@ -23,7 +22,6 @@ export const metadata = {
 const repo = 'https://github.com/vector-org/'
 
 const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
-  const { t } = await useServerLocale(lang)
   return (
     <Banner
       storageKey="starter-banner"
@@ -33,7 +31,6 @@ const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
 
 
 const CustomNavbar = async ({ lang }: I18nLangAsyncProps) => {
-  const { t } = await useServerLocale(lang)
   return (
     <Navbar
       logoLink={`/${lang}`}
@@ -65,7 +62,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
   const title = 'VECTOR | Documentation'
   const description = 'Documentation for the VECTOR platform'
 
-  const { t } = await useServerLocale(lang)
+  const { t } = await getServerLocale(lang)
 
   return (
     <html
@@ -85,43 +82,42 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
         <link rel="canonical" href={repo} />
       </Head>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem={false}
-          storageKey="starter-theme-provider"
-          disableTransitionOnChange
+        <Layout
+          banner={
+            <CustomBanner lang={lang} />
+          }
+          navbar={
+            <CustomNavbar lang={lang} />
+          }
+          lastUpdated={(
+            <LastUpdated>
+              { t('lastUpdated') }
+            </LastUpdated>
+          )}
+          editLink={null}
+          docsRepositoryBase="https://github.com/vector-org"
+          footer={(
+            <CustomFooter />
+          )}
+          search={<Search />}
+          i18n={[]}
+          darkMode={false}
+          nextThemes={{
+            attribute: 'class',
+            defaultTheme: 'light',
+            forcedTheme: 'light',
+            disableTransitionOnChange: true,
+            storageKey: 'starter-theme-provider',
+          }}
+          toc={{
+            backToTop: t('backToTop'),
+            title: t('pageTitle'),
+          }}
+          pageMap={pageMap}
+          feedback={{ content: '' }}
         >
-          <Layout
-            banner={
-              <CustomBanner lang={lang} />
-            }
-            navbar={
-              <CustomNavbar lang={lang} />
-            }
-            lastUpdated={(
-              <LastUpdated>
-                { t('lastUpdated') }
-              </LastUpdated>
-            )}
-            editLink={null}
-            docsRepositoryBase="https://github.com/vector-org"
-            footer={(
-              <CustomFooter />
-            )}
-            search={<Search />}
-            i18n={[]}
-            toc={{
-              backToTop: t('backToTop'),
-              title: t('pageTitle'),
-            }}
-            themeSwitch={{}}
-            pageMap={pageMap}
-            feedback={{ content: '' }}
-          >
-            {children}
-          </Layout>
-        </ThemeProvider>
+          {children}
+        </Layout>
         <SpeedInsights />
         <Analytics />
       </body>

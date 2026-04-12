@@ -36,10 +36,8 @@ export default antfu({
     'antfu/top-level-function': OFF,
     'react-dom/no-unsafe-target-blank': OFF,
     'react-dom/no-missing-button-type': OFF,
-    'react-hooks/exhaustive-deps': WARN,
     'react/no-useless-fragment': OFF,
     'react/no-array-index-key': OFF,
-    'react-hooks/rules-of-hooks': OFF,
     'react-refresh/only-export-components': OFF,
     'react-dom/no-dangerously-set-innerhtml': OFF,
 
