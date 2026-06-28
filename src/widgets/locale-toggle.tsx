@@ -26,7 +26,7 @@ export default function LocaleToggle({
       return
     }
 
-    const isBannerDismissed = localStorage.getItem('starter-banner')
+    const isBannerDismissed = localStorage.getItem('vector-docs-banner')
     if (isBannerDismissed) {
       banner.classList.add('x:hidden')
     }
