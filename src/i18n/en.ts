@@ -1,11 +1,11 @@
 export default {
-  systemTitle: 'PlayOnVector Docs',
+  systemTitle: 'VECTOR Docs',
 
   pageTitle: 'On This Page',
   backToTop: 'Back to top',
 
-  badgeTitle: 'Lightweight & Easy 🎉',
-  featureSupport: `🔥 Now with {{feature}} support!`,
+  badgeTitle: 'VECTOR Documentation',
+  featureSupport: `Guides for {{feature}}`,
   lastUpdated: 'Last updated on:',
 
   getStarted: 'Get Started',
@@ -19,71 +19,71 @@ export default {
 
   featureList: [
     {
-      title: 'Advanced Tech Stack',
-      description: 'Leveraging efficient React (v19) and support with Next.js, Nextra(v4) and Shadcn UI to build modern applications.',
+      title: 'Player Setup',
+      description: 'Step-by-step guidance for installing VECTOR, creating an account, backing up recovery details, and managing a game library.',
     },
     {
-      title: 'internationalization (i18n)',
-      description: 'Built-in multi-language support for easy i18n of your application, expanding your user base.',
+      title: 'Developer Onboarding',
+      description: 'Practical setup notes for studios integrating VECTOR licensing and launch flows into their games.',
     },
     {
-      title: 'TypeScript Safety',
-      description: 'Fully integrated with TypeScript, offering static type checking to reduce runtime errors and enhance code reliability and maintainability.',
+      title: 'Engine Integrations',
+      description: 'Unity, Unreal, and custom integration material for validating game access with the VECTOR client.',
     },
     {
-      title: 'Iconify Icons',
-      description: 'Integrated with the Iconify icon set, offering a wide range of icons to enhance UI visual presentation.',
+      title: 'Runtime DRM Notes',
+      description: 'Documentation for token locations, validation flow, and expected startup behavior across supported platforms.',
     },
     {
-      title: 'Tailwind CSS (v4)',
-      description: 'Atomic CSS integrated with Tailwind CSS, enabling efficient design and responsive UI.',
+      title: 'Troubleshooting',
+      description: 'Common setup, launch, wallet, and integration issues collected into concise reference pages.',
     },
     {
-      title: 'Code Standards',
-      description: 'Adheres to best practices with code standards and uses ESLint for quality checks and consistency.',
+      title: 'Public Reference',
+      description: 'A lightweight documentation site for external users without private credentials, local tokens, or internal setup notes.',
     },
     {
-      title: 'Dark Mode',
-      description: 'Supports dark mode for an enhanced nighttime experience.',
+      title: 'Platform Concepts',
+      description: 'Clear explanations of accounts, recovery phrases, licenses, purchases, and library sync behavior.',
     },
     {
-      title: 'Rich Components & Extensible Support',
-      description: 'Offers a range of built-in components and supports flexible custom extensions.',
+      title: 'Integration Examples',
+      description: 'Copyable snippets and implementation guidance for teams adding VECTOR checks to game startup paths.',
     },
     {
-      title: 'Lightweight Design',
-      description: 'Employs a lightweight design approach, streamlining project setup to focus on content creation.',
+      title: 'Maintained Docs Portal',
+      description: 'Built as the source of truth for external VECTOR docs, with content organized by gamer and developer workflows.',
     },
   ],
-  featuresDesc: 'Easily build modern applications and kickstart your development process.',
+  featuresDesc: 'Find the right VECTOR guide for player setup, developer integration, and runtime troubleshooting.',
   faqs: [
     {
-      question: 'What frameworks and tech stack does this starter template support?',
-      answer: 'This starter template supports Next.js and Nextra, with integrated modern development technologies like Tailwind CSS, Framer Motion, and Shadcn UI components.',
+      question: 'What is this documentation for?',
+      answer: 'This site explains how gamers and developers use VECTOR, including account setup, game library access, and integration flows.',
     },
     {
-      question: 'How do I start developing with this template?',
-      answer: 'Simply clone our GitHub repository and follow the steps in the documentation to run the installation commands to get started.',
+      question: 'Where should players start?',
+      answer: 'Start with the Gamers section for installation, account creation, recovery phrase backup, purchases, and library sync.',
     },
     {
-      question: 'What types of projects is this template suitable for?',
-      answer: 'This template is ideal for building fast and efficient modern web applications, including corporate sites, personal blogs, and e-commerce platforms.',
+      question: 'Where should developers start?',
+      answer: 'Start with the Developers section for integration requirements, engine-specific guides, and DRM validation notes.',
     },
     {
-      question: 'How do I add or modify components in the project?',
-      answer: 'You can use the provided component library and follow the instructions in the documentation to customize and extend them to suit your specific needs.',
+      question: 'Which game engines are covered?',
+      answer: 'The docs currently include Unity and Unreal integration guidance, plus a custom integration path for other runtimes.',
     },
     {
-      question: 'Does the template support multiple languages?',
-      answer: 'Yes, the template includes built-in internationalization (i18n) support, allowing you to easily add and manage multilingual content to expand your app\'s international user base.',
+      question: 'Are DRM token files committed here?',
+      answer: 'No. Runtime DRM tokens are generated on the user machine by the VECTOR client and should never be committed to this repository.',
     },
     {
-      question: 'How can I get technical support or help?',
-      answer: 'If you encounter any issues while using the template, please contact us via GitHub @pdsuwwz.',
+      question: 'How should documentation issues be reported?',
+      answer: 'Use the VECTOR GitHub organization or the project issue tracker once the public repository is available.',
     },
     {
-      question: '🐒 What does the author need most right now?',
-      answer: 'Stars! ⭐️ Coding till bald, just need Stars to heal my soul... 🥺',
+      question: 'Does this repository need private environment values?',
+      answer: 'No. The public docs should build without private credentials, local token files, or internal deployment secrets.',
     },
   ],
 

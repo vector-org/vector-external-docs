@@ -24,7 +24,7 @@ const repo = 'https://github.com/vector-org/'
 const CustomBanner = async ({ lang }: I18nLangAsyncProps) => {
   return (
     <Banner
-      storageKey="starter-banner"
+      storageKey="vector-docs-banner"
     />
   )
 }
@@ -107,7 +107,7 @@ export default async function RootLayout({ children, params }: LayoutProps<'/[la
             defaultTheme: 'light',
             forcedTheme: 'light',
             disableTransitionOnChange: true,
-            storageKey: 'starter-theme-provider',
+            storageKey: 'vector-docs-theme-provider',
           }}
           toc={{
             backToTop: t('backToTop'),
