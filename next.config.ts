@@ -27,3 +27,5 @@ export default withNextra({
     silenceDeprecations: ['legacy-js-api'],
   },
 })
+
+import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
