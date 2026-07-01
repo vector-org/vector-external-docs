@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@tailwindcss/vite": "^4.1.12",
+    "@tailwindcss/vite": "^4.3.2",
     "birpc": "^2.5.0",
     "ccount": "^2.0.1",
     "character-entities-html4": "^2.1.0",
