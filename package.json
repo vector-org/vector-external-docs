@@ -69,7 +69,7 @@
     "zwitch": "^2.0.4"
   },
   "devDependencies": {
-    "commitizen": "^4.3.1",
+    "commitizen": "^4.3.2",
     "cz-conventional-changelog": "^3.3.0",
     "husky": "^9.1.7",
     "remark-cli": "^12.0.1",
