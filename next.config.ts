@@ -28,4 +28,4 @@ export default withNextra({
   },
 })
 
-import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev());
+import('@opennextjs/cloudflare').then(m => m.initOpenNextCloudflareForDev())

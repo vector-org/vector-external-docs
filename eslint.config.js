@@ -62,6 +62,7 @@ export default antfu({
     }],
     'style/max-statements-per-line': ERROR,
     'style/quote-props': [ERROR, 'as-needed'],
+    'pnpm/yaml-enforce-settings': OFF,
 
     'ts/no-use-before-define': OFF,
     'ts/ban-ts-comment': OFF,
